@@ -1,13 +1,15 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+// import Nav from "./components/nav/Nav.jsx";
+import NavBs from "./components/nav-bs/NavBs.jsx";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Esta es mi app - Agustín Pol
         </p>
         <a
           className="App-link"
@@ -15,9 +17,11 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
-        </a>
-      </header>
+         Ir a React.Org
+         </a>
+      </header> */}
+      {/* <Nav/> */}
+      <NavBs/>
     </div>
   );
 }
