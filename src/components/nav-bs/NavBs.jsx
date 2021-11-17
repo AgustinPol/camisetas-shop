@@ -2,7 +2,7 @@ import React from "react";
 
 const NavBs = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg bg-dark">
   <div className="container-fluid">
     <a className="navbar-brand" href="/#">Camisetas-Shop</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,14 +10,14 @@ const NavBs = () => {
     </button>
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/#">Home</a>
+        <li className="nav-item" style={{margin: 3}}>
+          <a className="nav-link active btn" aria-current="page" href="/#">Home</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/#">Contacto</a>
+        <li className="nav-item" style={{margin: 3}}>
+          <a className="nav-link active btn" aria-current="page" href="/#">Contacto</a>
         </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link active dropdown-toggle" href="/#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li className="nav-item dropdown" style={{margin: 3}}>
+          <a className="nav-link active btn dropdown-toggle" href="/#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Camisetas
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
