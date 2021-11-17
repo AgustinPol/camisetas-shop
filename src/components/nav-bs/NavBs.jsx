@@ -4,8 +4,8 @@ const NavBs = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-dark">
   <div className="container-fluid">
-    <a className="navbar-brand" href="/#">Camisetas-Shop</a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <a className="navbar-brand btn btn-outline-light" href="/#">Camisetas-Shop</a>
+    <button className="navbar-toggler bg-light navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
@@ -16,13 +16,16 @@ const NavBs = () => {
         <li className="nav-item" style={{margin: 3}}>
           <a className="nav-link active btn" aria-current="page" href="/#">Contacto</a>
         </li>
+        <li className="nav-item" style={{margin: 3}}>
+          <a className="nav-link active btn" aria-current="page" href="/#">Info</a>
+        </li>
         <li className="nav-item dropdown" style={{margin: 3}}>
           <a className="nav-link active btn dropdown-toggle" href="/#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Camisetas
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a className="dropdown-item" href="/#">Nacionales</a></li>
-            <li><a className="dropdown-item" href="/#">Internacionales</a></li>
+            <li><a className="nav-link dropdown-item" href="/#">Nacionales</a></li>
+            <li><a className="nav-link dropdown-item" href="/#">Internacionales</a></li>
           </ul>
         </li>
       </ul>
