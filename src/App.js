@@ -1,6 +1,4 @@
-// import logo from './logo.svg';
 import './App.css';
-// import Nav from "./components/nav/Nav.jsx";
 import NavBs from "./components/nav-bs/NavBs.jsx";
 
 function App() {
@@ -20,7 +18,6 @@ function App() {
          Ir a React.Org
          </a>
       </header> */}
-      {/* <Nav/> */}
       <NavBs/>
     </div>
   );
