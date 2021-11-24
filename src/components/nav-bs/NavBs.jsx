@@ -33,11 +33,9 @@ const NavBs = () => {
       </ul>
     </div>
   </div>
+  <CartWidget/>
 </nav>
-<CartWidget/>
-
       </header>
-        
     )
 }
 export default NavBs;
