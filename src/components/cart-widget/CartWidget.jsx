@@ -4,7 +4,7 @@ import "./style.css";
 const CartWidget = () => {
     return (
 <div>        
-<button className="btn btn-danger text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+<button className="btn btn-outline-info text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 <img className="img-carrito" src={"./images/carrito1.png"} alt="imagen-carrito" /> 0
 </button>
 
