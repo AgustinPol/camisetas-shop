@@ -1,10 +1,17 @@
 import React from "react";
 
-import "./estilo.css";
+const style = {
+    display:"inline-block",
+    color: "black",
+    padding: "2rem",
+    borderRadius:"3px",
+    margin: "3rem",
+    border: "solid"
+}
 
 const ItemListContainer = ({greeting}) => {
     return (
-<h1 className="myTitle">{greeting}</h1>
+<h1 style={style} className="myTitle">{greeting}</h1>
     )
 }
 
