@@ -14,7 +14,7 @@ const ItemListContainer = ({greeting}) => {
     return (
         <div>
             <h1 style={styleTitle}>{greeting}</h1>
-            <ItemCount stock={13} initial={1}/>
+            <ItemCount stock={13} initial={1} />
         </div>
 
     )

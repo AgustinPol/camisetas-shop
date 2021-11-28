@@ -21,13 +21,17 @@ const [count, setCount] = useState(initial)
     }
 
     const onAdd = () => {
-        alert("Haz agregado tu/tus productos al carrito");
+        if(count > 0){
+            alert("Haz agregado tu/tus productos al carrito");
+        } else {
+            alert("Aun no haz agregado productos al carrito");
+        }
     }
 
     return (
         <div className="itemCount">
             <h4>Camiseta Boca Titular</h4>
-            <span className="btn btn-outline-secondary">{count}</span><br />
+            <span className="btn btn-info">{count}</span><br />
             <button style={{margin:4}} onClick={removeItem} className="btn-sm btn-primary">-</button>
             <button style={{margin:4}} onClick={addItem} className="btn-sm btn-primary">+</button>
             <button style={{marginTop:15}} onClick={onAdd} className="btn btn-outline-dark">Agregar al Carrito</button>
