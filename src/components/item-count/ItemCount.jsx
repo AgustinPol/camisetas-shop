@@ -4,14 +4,14 @@ import "./styles.css";
 
 const ItemCount = ({stock, initial}) => {
 
-    // const stock = 13;
 const [count, setCount] = useState(initial)
-    // const [contador, setContador] = useState(1);
 
     const addItem = () => {
         if (count < stock) {
             setCount(count + 1);
-        }
+        } else if (count === stock) {
+            alert("No tenemos más unidades de este producto");
+        } 
     }
 
     const removeItem = () => {
