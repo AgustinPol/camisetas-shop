@@ -1,6 +1,7 @@
 import React from "react";
+import ItemCount from "../item-count/ItemCount";
 
-const style = {
+const styleTitle = {
     display:"inline-block",
     color: "black",
     padding: "2rem",
@@ -11,7 +12,11 @@ const style = {
 
 const ItemListContainer = ({greeting}) => {
     return (
-<h1 style={style} className="myTitle">{greeting}</h1>
+        <div>
+            <h1 style={styleTitle}>{greeting}</h1>
+            <ItemCount stock={13} initial={1}/>
+        </div>
+
     )
 }
 
