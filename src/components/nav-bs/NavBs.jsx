@@ -12,13 +12,13 @@ const NavBs = () => {
     </button>
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav">
-        <li className="nav-item" style={{margin: 3}}>
+        <li className="nav-item" style={{margin: 1}}>
           <a className="nav-link active btn text-white" aria-current="page" href="/#">Home</a>
         </li>
-        <li className="nav-item" style={{margin: 3}}>
+        <li className="nav-item" style={{margin: 1}}>
           <a className="nav-link active btn text-white" aria-current="page" href="/#">Contacto</a>
         </li>
-        <li className="nav-item" style={{margin: 3}}>
+        <li className="nav-item" style={{margin: 1}}>
           <a className="nav-link active btn text-white" aria-current="page" href="/#">Info</a>
         </li>
         <li className="nav-item dropdown" style={{margin: 3}}>
@@ -28,6 +28,8 @@ const NavBs = () => {
           <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a className="nav-link dropdown-item" href="/#">Nacionales</a></li>
             <li><a className="nav-link dropdown-item" href="/#">Internacionales</a></li>
+            <li><a className="nav-link dropdown-item" href="/#">Selecciones</a></li>
+
           </ul>
         </li>
       </ul>
