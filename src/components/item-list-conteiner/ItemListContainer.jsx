@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import ItemCount from "../item-count/ItemCount";
+// import ItemCount from "../item-count/ItemCount";
 import ItemList from "../items/ItemList";
 import "./style-cont.css";
 import { getProducts } from "../../products";
@@ -11,7 +11,8 @@ const styleTitle = {
     padding: "2rem",
     borderRadius:"3px",
     margin: "3rem 4rem 5rem 6rem",
-    border: "solid"
+    border: "solid",
+    alignContent: "center"
 }
 
 const ItemListContainer = () => {
@@ -28,12 +29,12 @@ const ItemListContainer = () => {
     }, [])
 
     return (
-        <div className="itemListContainer">
+        <div className="itemListContainer container-lg">
             <h1 style={styleTitle}>¡Bienvenidos a nuestra tienda online!</h1>
             <ItemList products={products} />
-            <ItemCount stock={13} initial={1} />
+            {/* <ItemCount stock={13} initial={1} />
             <ItemCount stock={10} initial={1} />
-            <ItemCount stock={15} initial={1} />
+            <ItemCount stock={15} initial={1} /> */}
         </div>
 
     )

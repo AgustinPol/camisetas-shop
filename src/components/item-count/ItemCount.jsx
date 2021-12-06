@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import "./styles.css";
 
 const ItemCount = ({stock, initial}) => {
 
@@ -29,12 +28,11 @@ const [count, setCount] = useState(initial)
     }
 
     return (
-        <div className="itemCount">
-            <h4>Camiseta Boca Titular</h4>
-            <span className="btn btn-info">{count}</span><br />
-            <button style={{margin:4}} onClick={removeItem} className="btn-sm btn-primary">-</button>
-            <button style={{margin:4}} onClick={addItem} className="btn-sm btn-primary">+</button>
-            <button style={{marginTop:15}} onClick={onAdd} className="btn btn-outline-dark">Agregar al Carrito</button>
+        <div>
+            <span className="btn btn-outline-secondary">{count}</span><br />
+            <button style={{margin:4}} onClick={removeItem} className="btn btn-outline-dark">-</button>
+            <button style={{margin:4}} onClick={addItem} className="btn btn-outline-dark">+</button><br />
+            <button style={{marginTop:15}} onClick={onAdd} className="btn btn-success">Agregar al Carrito</button><br />
         </div>
     )
 }

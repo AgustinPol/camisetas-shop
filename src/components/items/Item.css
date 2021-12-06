@@ -1,8 +1,8 @@
 .myCard {
-   margin: 3rem;
-    width: 20rem;
-    height: 70vh;
-    padding: 20;
+   margin: 1.5rem;
+    width: 18rem;
+    height: 75vh;
+    padding: 15;
     font-size: 20px;
     display: flex;
     flex-direction: column;
