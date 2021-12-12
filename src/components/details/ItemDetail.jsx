@@ -8,7 +8,7 @@ const ItemDetail = ({ item }) => {
             <img className="imgDetail" src={item.picture} alt={item.name} />
             <h3>{item.name}</h3>
             <h4>Precio: $ {item.price}</h4>
-            <h5>Categoría: Nacional</h5>
+            <h5>Categoría: {item.category}</h5>
             <h5>Envio gratis en Caba y Gba</h5>
             <h6>Elegir talle</h6>
             <select className="btn btn-outline-dark" name="talle" id="talles">

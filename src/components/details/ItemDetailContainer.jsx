@@ -1,20 +1,24 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import ItemDetail from './ItemDetail';
-import { getItem} from "../../products";
+import { getProductById } from "../../products";
+import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState()
+    const {paramId} = useParams();
+    console.log(paramId)
     useEffect(() => {
-        const list = getItem()
-        list.then(list => {
-            setProducts(list)
+        getProductById(paramId).then(item => {
+            setProducts(item)
+        }).catch(err  => {
+            console.log(err)
         })
 
         return (() => {
-            setProducts([])
+            setProducts()
         })
-    }, [])
+    }, [paramId])
 
     return (
         <div className="itemDetailContainer container-lg">

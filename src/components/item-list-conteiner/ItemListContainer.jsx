@@ -1,40 +1,39 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import ItemCount from "../item-count/ItemCount";
 import ItemList from "../items/ItemList";
 import "./style-cont.css";
 import { getProducts } from "../../products";
-
-const styleTitle = {
-    display:"inline-block",
-    color: "black",
-    padding: "2rem",
-    borderRadius:"3px",
-    margin: "3rem 4rem 5rem 6rem",
-    border: "solid",
-    alignContent: "center"
-}
+import { getProductsByCategory } from "../../products";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = () => {
+    const {categoryId} = useParams()
     const [products, setProducts] = useState([])
-    useEffect(() => {
-        const list = getProducts()
-        list.then(list => {
-            setProducts(list)
-        })
 
-        return (() => {
-            setProducts([])
-        })
-    }, [])
+    useEffect( ()=> {
+        
+        //Funcion IIFE (autoejecutada) de manera asincrónica utilizando async await.
+        ( async () => {
+
+            if (categoryId !== undefined){
+
+                const products = await getProductsByCategory(categoryId);
+                setProducts(products);
+
+            } else {
+
+                const products = await getProducts()
+                setProducts(products);
+
+            }
+        })()
+
+    }, [categoryId])
 
     return (
         <div className="itemListContainer container-lg">
-            <h1 style={styleTitle}>¡Bienvenidos a nuestra tienda online!</h1>
+            <h1 className="styleTitle">¡Bienvenidos a nuestra tienda online!</h1>
             <ItemList products={products} />
-            {/* <ItemCount stock={13} initial={1} />
-            <ItemCount stock={10} initial={1} />
-            <ItemCount stock={15} initial={1} /> */}
         </div>
 
     )
