@@ -14,19 +14,15 @@ const NavBs = () => {
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav">
         
-        <li className="nav-item" style={{margin: 1}}>
-          <Link to="/category/nacional" className="nav-link active btn btn-outline-dark" aria-current="page" href="divFooter">Nacionales</Link>
+        <li className="nav-item" style={{margin: 4}}>
+          <Link to="/category/nacional" className="nav-link active btn btn-outline-light" aria-current="page" href="divFooter">Nacionales</Link>
         </li>
-        <li className="nav-item" style={{margin: 1}}>
-          <Link to="/category/internacional" className="nav-link active btn btn-outline-dark" aria-current="page" href="divFooter">Internacionales</Link>
+        <li className="nav-item" style={{margin: 4}}>
+          <Link to="/category/internacional" className="nav-link active btn btn-outline-light" aria-current="page" href="divFooter">Internacionales</Link>
         </li>
-        <li className="nav-item" style={{margin: 1}}>
-          <Link to="/category/selecciones" className="nav-link active btn btn-outline-dark" aria-current="page" href="divFooter">Selecciones</Link>
+        <li className="nav-item" style={{margin: 4}}>
+          <Link to="/category/selecciones" className="nav-link active btn btn-outline-light" aria-current="page" href="divFooter">Selecciones</Link>
         </li>
-        {/* <li className="nav-item" style={{margin: 1}}>
-          <a className="nav-link active btn btn-outline-dark" aria-current="page" href="#/">Contacto</a>
-        </li> */}
-      
       </ul>
     </div>
   </div>
