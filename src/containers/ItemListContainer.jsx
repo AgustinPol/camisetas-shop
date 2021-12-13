@@ -25,7 +25,6 @@ const ItemListContainer = () => {
 
                 const products = await getProducts()
                 setProducts(products);
-
             }
         })()
 

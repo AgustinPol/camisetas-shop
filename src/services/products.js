@@ -28,8 +28,8 @@ setTimeout(() => {
 
 export const getProductById = (id) => {  
     return new Promise((resolve, reject) => {
-        const product = products.find(prod => parseInt(prod.id) === parseInt(id))
-        setTimeout(() => resolve(product), 500)
+        const productFound = products.find(prod => parseInt(prod.id) === parseInt(id))
+        setTimeout(() => resolve(productFound), 500)
     })
 }
 

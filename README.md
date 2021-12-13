@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Camisetas-Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Es un proyecto e-commerce creado desde cero con React Js. Se trata de un proyecto ficticio, el cual es el proyecto final del curso de React Js en Coderhouse.
 
-## Available Scripts
+## Como inicié mi proyecto?
 
-In the project directory, you can run:
+A continuación, dejo los pasos de como fui creando el proyecto.
 
-### `yarn start`
+### `create-react-app`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Con este comando inicializamos el proyecto de React.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `npm install`
 
-### `yarn test`
+Este es el comando con el que instalamos todas las dependencias y recursos que utilizaremos más adelante.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm start`
 
-### `yarn build`
+Este comando es el que se utiliza para ejecutar la aplicación, en el localhost, lo cual nos permite ir viendo los cambios que vamos haciendo a la aplicación en el momento, nos permite saber cuando nos equivocamos.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Cómo detengo la ejecución del programa?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `Ctrl + c`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Es el comando necesario para detener la ejecución del programa y la visualización en el localHost. Es importante saberlo porque cuando necesitamos guardar cambios o alguna acción relacionada al versionado, debemos utilizarlo.
 
-### `yarn eject`
+## Cómo manejo el proyecto y dónde lo guardamos.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `git y github` 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Utilizo git para manejar las versiones del proyecto, guardar todos los cambios, y retroceder a versiones anteriores si fuera necesario.
+Por otro lado utilizamos la herramienta de Github para subir el proyecto a la web y poder compartirlo.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Base de datos de productos
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `products.js`
 
-## Learn More
+Al ser un e-commerce de productos necesitamos una base de datos, como todavía no contamos con ella, simulo una con un objeto de productos con sus respectivas propiedades.
+Este archivo se encuentra en la carpeta "src/services".
+En este archivo también se encuentran las funciones creadas para darle funcionamiento a la app (getProducts, getItem, getProductById, getProductsByCategory).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Containers
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `ItemListContainer y ItemDetailContainer`
 
-### Code Splitting
+Dos componentes contenedores, ubicados en la carpeta "src/containers". Estos componentes son los principales ya que en ellos se encuentra la mayoria del contenido de la app. Los colocamos en el archivo "App.js".
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Componentes
 
-### Analyzing the Bundle Size
+### `src/components`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+En esta carpeta se encuentran los componentes utilizados en la app.
 
-### Making a Progressive Web App
+## Lenguajes y conocimientos utilizados.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### `Qué lenguajes y herramientas utilice?`
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
++ Html
++ Css
++ Javascript
++ React Js
++ Node Js
++ Git
++ Github
++ Bootstrap
