@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import ItemDetail from './ItemDetail';
-import { getProductById } from "../../products";
+import ItemDetail from '../components/details/ItemDetail';
+import { getProductById } from "../services/products";
 import { useParams } from 'react-router-dom';
+import Spinner from '../components/spinner/Spinner';
+
+
 
 const ItemDetailContainer = () => {
     const [products, setProducts] = useState()
@@ -22,7 +25,7 @@ const ItemDetailContainer = () => {
 
     return (
         <div className="itemDetailContainer container-lg">
-           {products ? <ItemDetail item={products} /> : <div><p>Cargando...</p></div>}
+           {products ? <ItemDetail item={products} /> : <Spinner/>}
         </div>
 
     )

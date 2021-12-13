@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import ItemCount from "../item-count/ItemCount";
 import "./detail.css";
 
@@ -21,7 +22,7 @@ const ItemDetail = ({ item }) => {
             <h5>Cantidad disponible {item.stockAvailable}</h5>
             <h6>Elegir Cantidad</h6>
             <ItemCount stock={item.stockAvailable} initial={1}/>
-            <button style={{margin:"1rem"}} className="btn btn-primary" >Volver</button>
+            <Link to="/" style={{margin:"1rem"}} className="btn btn-primary" >Volver al Home</Link>
         </div>
     )
 }

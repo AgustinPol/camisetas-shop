@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import ItemList from "../items/ItemList";
-import "./style-cont.css";
-import { getProducts } from "../../products";
-import { getProductsByCategory } from "../../products";
+import { getProducts } from "../services/products";
+import { getProductsByCategory } from "../services/products";
 import { useParams } from "react-router-dom";
+import Spinner from "../components/spinner/Spinner";
+import ItemList from "../components/items/ItemList";
+import "../components/item-list-conteiner/style-cont.css";
+
 
 const ItemListContainer = () => {
     const {categoryId} = useParams()
@@ -12,7 +14,6 @@ const ItemListContainer = () => {
 
     useEffect( ()=> {
         
-        //Funcion IIFE (autoejecutada) de manera asincrónica utilizando async await.
         ( async () => {
 
             if (categoryId !== undefined){
@@ -33,7 +34,7 @@ const ItemListContainer = () => {
     return (
         <div className="itemListContainer container-lg">
             <h1 className="styleTitle">¡Bienvenidos a nuestra tienda online!</h1>
-            <ItemList products={products} />
+            {products.length !== 0 ? <ItemList products={products} /> : <Spinner/>}
         </div>
 
     )

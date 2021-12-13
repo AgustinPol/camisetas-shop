@@ -5,7 +5,7 @@ const CartWidget = () => {
     return (
 <div className="cont-carrito">        
 <button className="btn btn-outline-info text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-<img className="img-carrito" src={"./images/carrito1.png"} alt="imagen-carrito" /> 0
+<img className="img-carrito" src={"../images/carrito1.png"} alt="imagen-carrito" /> 0
 </button>
 
 <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
