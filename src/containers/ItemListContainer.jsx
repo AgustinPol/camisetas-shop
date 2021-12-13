@@ -5,7 +5,7 @@ import { getProductsByCategory } from "../services/products";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/spinner/Spinner";
 import ItemList from "../components/items/ItemList";
-import "../components/item-list-conteiner/style-cont.css";
+import "../containers/style-cont.css";
 
 
 const ItemListContainer = () => {
