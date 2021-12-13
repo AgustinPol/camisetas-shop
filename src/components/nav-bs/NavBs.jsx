@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const NavBs = () => {
     return (
 <header>
-  <nav className="navbar navbar-expand-lg bg-dark">
+  <nav className="navbar navbar-expand-lg bg-dark bg-gradient">
     <div className="container-fluid">
       <Link className="navbar-brand btn btn-outline-light" to={"/"}>Camisetas-Shop</Link>
         <button className="navbar-toggler bg-light navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

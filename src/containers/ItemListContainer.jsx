@@ -20,7 +20,6 @@ const ItemListContainer = () => {
 
                 const products = await getProductsByCategory(categoryId);
                 setProducts(products);
-
             } else {
 
                 const products = await getProducts()
@@ -31,7 +30,7 @@ const ItemListContainer = () => {
     }, [categoryId])
 
     return (
-        <div className="itemListContainer container-lg">
+        <div className="itemListContainer container">
             <h1 className="styleTitle">¡Bienvenidos a nuestra tienda online!</h1>
             {products.length !== 0 ? <ItemList products={products} /> : <Spinner/>}
         </div>
