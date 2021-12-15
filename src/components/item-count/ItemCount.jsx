@@ -9,7 +9,7 @@ const [count, setCount] = useState(initial)
         if (count < stock) {
             setCount(count + 1);
         } else if (count === stock) {
-            alert("No tenemos más unidades de este producto");
+            console.log("No tenemos más unidades de este producto");
         } 
     }
 
@@ -21,9 +21,9 @@ const [count, setCount] = useState(initial)
 
     const onAdd = () => {
         if(count > 0){
-            alert(`Haz agregado ${count} producto/os al carrito`);
+            console.log(`Haz agregado ${count} producto/os al carrito`);
         } else {
-            alert("Aun no haz agregado productos al carrito");
+            console.log("Aun no haz agregado productos al carrito");
         }
     }
 
@@ -32,7 +32,7 @@ const [count, setCount] = useState(initial)
             <span className="btn btn-outline-secondary">{count}</span><br />
             <button style={{margin:4}} onClick={decrement} className="btn btn-outline-dark">-</button>
             <button style={{margin:4}} onClick={increment} className="btn btn-outline-dark">+</button><br />
-            <button style={{marginTop:15}} onClick={() => onAdd(count)} className="btn btn-success">Agregar al Carrito</button><br />
+            <button style={{marginTop:15}} onClick={onAdd} className="btn btn-success">Agregar al Carrito</button><br />
         </div>
     )
 }

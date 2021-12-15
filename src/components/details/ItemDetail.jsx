@@ -4,19 +4,16 @@ import ItemCount from "../item-count/ItemCount";
 import { useState } from 'react';
 import "./detail.css";
 
-const GoToCart = () => {
-    <div>
-        <Link className='btn btn-primary' to={"/cart"}> Ir al carrito</Link>
-        <Link className='btn btn-primary' to={"/"}> Seguir Navegando</Link>
-    </div>
-}
-
 const ItemDetail = ({ item }) => {
+ 
+    const [count, setCount] = useState(0);
 
-const [quantityAdded, setQuantityAdded] = useState(0) 
-
-console.log(quantityAdded)
-
+    const onAdd = (contador) => {
+        console.log("se agregó un item", contador)
+        setCount(contador)
+    }
+    console.log(count)
+        
     return (
         <article className="divDetail">
             <img className="imgDetail" src={item.picture} alt={item.name} />
@@ -34,7 +31,7 @@ console.log(quantityAdded)
             </select><br />
             <h5>Cantidad disponible: {item.stockAvailable}</h5>
             <h6>Elegir Cantidad:</h6>
-            <ItemCount stock={item.stockAvailable} initial={1} final={quantityAdded} />
+            {count === 0 ? <ItemCount stock={item.stockAvailable} initial={1} final={onAdd} /> : <Link to="/cart"></Link>}
             <Link to="/" style={{margin:"1rem"}} className="btn btn-primary" >Volver al Home</Link>
         </article>
     )
