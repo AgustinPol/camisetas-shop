@@ -1,11 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ItemCount from "../item-count/ItemCount";
+import { useState } from 'react';
 import "./detail.css";
 
+const GoToCart = () => {
+    <div>
+        <Link className='btn btn-primary' to={"/cart"}> Ir al carrito</Link>
+        <Link className='btn btn-primary' to={"/"}> Seguir Navegando</Link>
+    </div>
+}
+
 const ItemDetail = ({ item }) => {
+
+const [quantityAdded, setQuantityAdded] = useState(0) 
+
+console.log(quantityAdded)
+
     return (
-        <div className="divDetail">
+        <article className="divDetail">
             <img className="imgDetail" src={item.picture} alt={item.name} />
             <h3>{item.name}</h3>
             <h4>Precio: $ {item.price}</h4>
@@ -21,9 +34,9 @@ const ItemDetail = ({ item }) => {
             </select><br />
             <h5>Cantidad disponible: {item.stockAvailable}</h5>
             <h6>Elegir Cantidad:</h6>
-            <ItemCount stock={item.stockAvailable} initial={1}/>
+            <ItemCount stock={item.stockAvailable} initial={1} final={quantityAdded} />
             <Link to="/" style={{margin:"1rem"}} className="btn btn-primary" >Volver al Home</Link>
-        </div>
+        </article>
     )
 }
 
