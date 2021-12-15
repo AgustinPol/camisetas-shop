@@ -9,7 +9,7 @@ const [count, setCount] = useState(initial)
         if (count < stock) {
             setCount(count + 1);
         } else if (count === stock) {
-            console.log("No tenemos más unidades de este producto");
+            console.log("No tenemos más unidades del producto");
         } 
     }
 
