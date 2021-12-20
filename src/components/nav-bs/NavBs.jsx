@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import CartWidget from "../cart-widget/CartWidget";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const NavBs = () => {
+  const { cart } = useContext(CartContext);
     return (
 <header>
   <nav className="navbar navbar-expand-lg bg-dark bg-gradient">
@@ -25,7 +27,9 @@ const NavBs = () => {
         </ul>
       </div>
     </div>
-  <CartWidget/>
+  <>
+  { cart.length !== 0 ? <CartWidget/> : null }
+  </>  
   </nav>
 </header>
     )

@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import NavBs from "./components/nav-bs/NavBs.jsx";
 import ItemListContainer from "./containers/ItemListContainer.jsx";
@@ -5,10 +6,14 @@ import ItemDetailContainer from './containers/ItemDetailContainer.jsx';
 import Cart from "./components/cart/Cart.jsx"
 import Footer from './components/footer/Footer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
+
+
 
 function App() {
   return (
     <div className="App">
+      <CartProvider>
       <BrowserRouter>
        <NavBs/>
         <Switch>
@@ -27,8 +32,10 @@ function App() {
         </Switch>
         <Footer/>
       </BrowserRouter>
+      </CartProvider>
+      
     </div>
-  );
+  )
 }
 
 export default App;
