@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/camisetas-shop/static/css/main.8df58332.chunk.css",
-    "main.js": "/camisetas-shop/static/js/main.0ff9ced1.chunk.js",
-    "main.js.map": "/camisetas-shop/static/js/main.0ff9ced1.chunk.js.map",
-    "runtime-main.js": "/camisetas-shop/static/js/runtime-main.dde0ec6b.js",
-    "runtime-main.js.map": "/camisetas-shop/static/js/runtime-main.dde0ec6b.js.map",
+    "main.css": "/camisetas-shop/static/css/main.e68750e9.chunk.css",
+    "main.js": "/camisetas-shop/static/js/main.f8ca9f96.chunk.js",
+    "main.js.map": "/camisetas-shop/static/js/main.f8ca9f96.chunk.js.map",
+    "runtime-main.js": "/camisetas-shop/static/js/runtime-main.5aad8a90.js",
+    "runtime-main.js.map": "/camisetas-shop/static/js/runtime-main.5aad8a90.js.map",
     "static/css/2.4659568d.chunk.css": "/camisetas-shop/static/css/2.4659568d.chunk.css",
-    "static/js/2.15111a17.chunk.js": "/camisetas-shop/static/js/2.15111a17.chunk.js",
-    "static/js/2.15111a17.chunk.js.map": "/camisetas-shop/static/js/2.15111a17.chunk.js.map",
-    "static/js/3.e7019b9c.chunk.js": "/camisetas-shop/static/js/3.e7019b9c.chunk.js",
-    "static/js/3.e7019b9c.chunk.js.map": "/camisetas-shop/static/js/3.e7019b9c.chunk.js.map",
+    "static/js/2.db0ddca8.chunk.js": "/camisetas-shop/static/js/2.db0ddca8.chunk.js",
+    "static/js/2.db0ddca8.chunk.js.map": "/camisetas-shop/static/js/2.db0ddca8.chunk.js.map",
+    "static/js/3.f2507799.chunk.js": "/camisetas-shop/static/js/3.f2507799.chunk.js",
+    "static/js/3.f2507799.chunk.js.map": "/camisetas-shop/static/js/3.f2507799.chunk.js.map",
     "index.html": "/camisetas-shop/index.html",
     "static/css/2.4659568d.chunk.css.map": "/camisetas-shop/static/css/2.4659568d.chunk.css.map",
-    "static/css/main.8df58332.chunk.css.map": "/camisetas-shop/static/css/main.8df58332.chunk.css.map",
-    "static/js/2.15111a17.chunk.js.LICENSE.txt": "/camisetas-shop/static/js/2.15111a17.chunk.js.LICENSE.txt"
+    "static/css/main.e68750e9.chunk.css.map": "/camisetas-shop/static/css/main.e68750e9.chunk.css.map",
+    "static/js/2.db0ddca8.chunk.js.LICENSE.txt": "/camisetas-shop/static/js/2.db0ddca8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.dde0ec6b.js",
+    "static/js/runtime-main.5aad8a90.js",
     "static/css/2.4659568d.chunk.css",
-    "static/js/2.15111a17.chunk.js",
-    "static/css/main.8df58332.chunk.css",
-    "static/js/main.0ff9ced1.chunk.js"
+    "static/js/2.db0ddca8.chunk.js",
+    "static/css/main.e68750e9.chunk.css",
+    "static/js/main.f8ca9f96.chunk.js"
   ]
 }
