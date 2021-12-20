@@ -5,6 +5,7 @@ import ItemListContainer from "./containers/ItemListContainer.jsx";
 import ItemDetailContainer from './containers/ItemDetailContainer.jsx';
 import Cart from "./components/cart/Cart.jsx"
 import Footer from './components/footer/Footer';
+import Form from './components/form/Form';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path ="/cart">
             <Cart />
+          </Route>
+          <Route path ="/form">
+            <Form />
           </Route>
         </Switch>
         <Footer/>

@@ -35,7 +35,7 @@ const Cart = () => {
               <div>
                   <h3>Total Compra: ${getTotal()}</h3>
               </div>
-              <Link to={"/"} className='btn btn-success myButton'>Finalizar compra</Link><br />
+              <Link to={"/form"} className='btn btn-success myButton'>Finalizar compra</Link><br />
               <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
             </div> 
         )
