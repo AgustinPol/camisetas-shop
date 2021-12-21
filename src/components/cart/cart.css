@@ -18,9 +18,9 @@
 }
 
 .imgDetail {
-display: inline-block;    
-width: 7rem;
-height: 6rem;
+    display: inline-block;    
+    width: 7rem;
+    height: 6rem;
 }
 
 .divTotal {
@@ -31,4 +31,12 @@ height: 6rem;
     border: black solid;
     background-image: linear-gradient(to right, rgba(210, 4, 4, 100) , rgba(0, 0, 0,0.8));
 
+}
+
+.divSubtotal {
+    width: fit-content;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 3px;
+    border: black solid;
 }

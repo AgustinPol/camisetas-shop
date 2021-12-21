@@ -8,13 +8,12 @@ const [cart, setCart] = useState([]);
 const [totalQuantity, setTotalQuantity] = useState(0);
 
 const addItem = (newProduct, newQuantity) => {   
-    const repeatedProduct = cart.find(e=>e.item.id === newProduct.id)
+    const repeatedProduct = cart.find(e => e.item.id === newProduct.id)
     const auxCart = [...cart]; 
     (repeatedProduct !== undefined) ? 
         changeQuantity(auxCart, repeatedProduct, newQuantity)
         :
         pushItem(newProduct, newQuantity, auxCart)
-
 }
 
 const removeItem = (itemId) => {
