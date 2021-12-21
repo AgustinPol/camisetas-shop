@@ -13,27 +13,44 @@ const Cart = () => {
             <div className='cartDiv'>
               <h2>Este es tu Carrito</h2>
                 {cart.map(product =>
-                    <div className='itemProduct' key={product.item.id}>
+                    <div className='itemProduct container-lg' key={product.item.id}>
+                        <div className='row'>
 
-                        <div>
+                            <div className='col-lg-4'>
+                               <img className='imgDetail' src={product.item.picture} alt={product.item.name} />
+                            </div>
+
+                            <div className='col-lg-4'>
+
+                            <div>
                           <h6>Producto: {product.item.name}</h6>
                         </div>
 
                         <div>
-                        <h6>Precio: ${product.item.price}</h6>
+                          <h6>Precio: ${product.item.price}</h6>
                         </div>
 
                         <div>
-                        <h6>Cantidad: {product.quantity} unidades</h6>
+                          <h6>Unidades: {product.quantity}</h6>
                         </div>
 
                         <div>
-                            <button className='btn btn-danger' onClick={ () => removeItem(product.item.id)}>Quitar producto</button>
+                          <button style={{marginBottom: "0.5rem"}} className='btn btn-danger' onClick={ () => removeItem(product.item.id)}>Quitar producto</button>
                         </div>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        
+                        
+                        
                     </div>
             )}
-              <div>
-                  <h3>Total Compra: ${getTotal()}</h3>
+              <div className='divTotal'>
+                  <h3 className='text-light'>Total Compra: ${getTotal()}</h3>
               </div>
               <Link to={"/form"} className='btn btn-success myButton'>Finalizar compra</Link><br />
               <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>

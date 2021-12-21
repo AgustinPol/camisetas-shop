@@ -7,12 +7,28 @@
 }
 
 .myButton {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .itemProduct {
     width: 100%;
-    height: 8rem;
+    height: auto;
     border: solid black;
     border-radius: 3px;
+}
+
+.imgDetail {
+display: inline-block;    
+width: 7rem;
+height: 6rem;
+}
+
+.divTotal {
+    width: fit-content;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 3px;
+    border: black solid;
+    background-image: linear-gradient(to right, rgba(210, 4, 4, 100) , rgba(0, 0, 0,0.8));
+
 }
