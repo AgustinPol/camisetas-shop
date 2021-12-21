@@ -8,7 +8,7 @@ const [cart, setCart] = useState([]);
 const [totalQuantity, setTotalQuantity] = useState(0);
 
 const addItem = (newProduct, newQuantity) => {   
-    const repeatedProduct = cart.find(e=>e.item.id ===newProduct.id)
+    const repeatedProduct = cart.find(e=>e.item.id === newProduct.id)
     const auxCart = [...cart]; 
     (repeatedProduct === undefined) ? 
         pushItem(newProduct, newQuantity, auxCart)
@@ -32,7 +32,7 @@ const pushItem = (newProduct, newQuantity, auxCart) => {
 }
 
 const changeQuantity = (auxCart, currentElement, newQuantity) => {
-    const index= cart.indexOf(currentElement);
+    const index = cart.indexOf(currentElement);
     auxCart[index].quantity += newQuantity;
     setTotalQuantity(newQuantity + totalQuantity);
     setCart(auxCart);
