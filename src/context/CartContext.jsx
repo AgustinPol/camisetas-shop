@@ -10,19 +10,19 @@ const [totalQuantity, setTotalQuantity] = useState(0);
 const addItem = (newProduct, newQuantity) => {   
     const repeatedProduct = cart.find(e=>e.item.id === newProduct.id)
     const auxCart = [...cart]; 
-    (repeatedProduct === undefined) ? 
-        pushItem(newProduct, newQuantity, auxCart)
-        :
+    (repeatedProduct !== undefined) ? 
         changeQuantity(auxCart, repeatedProduct, newQuantity)
-        console.log(auxCart)
+        :
+        pushItem(newProduct, newQuantity, auxCart)
+
 }
 
 const removeItem = (itemId) => {
-    const choosenItem = cart.filter(e=> e.item.id === itemId);
-    const auxQuanity = totalQuantity - choosenItem[0].quantity;
-    const newCart = cart.filter(e => e.item.id !== itemId);
+    const choosenItem = cart.filter(element => element.item.id === itemId);
+    const newCart = cart.filter(element => element.item.id !== itemId);
+    const auxQuantity = totalQuantity - choosenItem[0].quantity;
     setCart(newCart);
-    setTotalQuantity(auxQuanity);
+    setTotalQuantity(auxQuantity);
 }
 
 const pushItem = (newProduct, newQuantity, auxCart) => {
@@ -39,7 +39,7 @@ const changeQuantity = (auxCart, currentElement, newQuantity) => {
 }
 
 const isInCart = (id) => {
-    const currentItem = cart.find(element=> element.item.id === id)
+    const currentItem = cart.find(element => element.item.id === id)
 
     return currentItem ? true : false
 }

@@ -1,5 +1,5 @@
 const products = [
-    {id: 1, quantity: 1, name: "Boca Titular", price: 11000, category: "nacional", stockAvailable:18, picture: "../img-camisetas/boca-img.jpg"},
+    {id: 1, quantity: 1, name: "Boca Titular", price: 11000, category: "nacional", stockAvailable:18, picture: "../images/img-camisetas/boca-img.jpg"},
     {id: 2, quantity: 1, name: "River Titular", price: 11000, category: "nacional", stockAvailable:22, picture: "../images/img-camisetas/river-img.jpg"},
     {id: 3, quantity: 1, name: "Psg Titular", price: 12499, category: "internacional", stockAvailable:16, picture: "../images/img-camisetas/psg-img.png"},
     {id: 4, quantity: 1, name: "Manchester City Titular", price: 10500, category: "internacional", stockAvailable:19, picture: "../images/img-camisetas/manchester-city-img.jpg"},
