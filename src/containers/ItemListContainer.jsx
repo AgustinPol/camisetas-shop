@@ -12,7 +12,7 @@ const ItemListContainer = () => {
     const {categoryId} = useParams()
     const [products, setProducts] = useState([])
 
-    useEffect( ()=> {
+    useEffect( () => {
         
         ( async () => {
 

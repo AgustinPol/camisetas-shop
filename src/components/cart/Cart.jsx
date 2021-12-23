@@ -62,7 +62,7 @@ const Cart = () => {
 
     const emptyCart = () => {
         return (
-            <div className='cartDiv'>
+            <div className='emptyCart'>
                <h2>Tu Carrito está vacío!</h2>
                <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
             </div>
