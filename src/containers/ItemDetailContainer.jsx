@@ -1,29 +1,40 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import ItemDetail from '../components/details/ItemDetail';
-import { getProductById } from "../services/products";
+// import { getProductById } from "../services/products";
 import { useParams } from 'react-router-dom';
 import Spinner from '../components/spinner/Spinner';
-
+import { getDoc, doc } from "firebase/firestore";
+import { db } from '../services/firebase/firebase';
+ 
 const ItemDetailContainer = () => {
-    const [products, setProducts] = useState()
+    const [product, setProduct] = useState();
+    const [loading, setLoading] = useState(true);
     const {paramId} = useParams();
 
     useEffect(() => {
-        getProductById(paramId).then(item => {
-            setProducts(item)
-        }).catch(err  => {
-            console.log(err)
+        setLoading(true)
+            getDoc(doc(db, "items", paramId)).then((querySnapshot) => {
+                const product = { id: querySnapshot.id, ...querySnapshot.data()}
+                setProduct(product)
+        }).catch((error) => {
+            console.log("error searching items", error)
+        }).finally(() => {
+            setLoading(false)
         })
 
         return (() => {
-            setProducts()
+            setProduct()
         })
     }, [paramId])
 
+    if(loading) {
+        return <Spinner/>
+    }
+
     return (
         <div className="itemDetailContainer container-lg">
-           {products ? <ItemDetail item={products} /> : <Spinner/>}
+           <ItemDetail item={product} />
         </div>
 
     )
