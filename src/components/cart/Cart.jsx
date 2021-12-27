@@ -37,10 +37,10 @@ const Cart = () => {
 
                             <div className='col-lg-4'>
                               <div>
-                               <button style={{marginBottom: "0.5rem", marginTop: "0.5rem"}} className='btn btn-danger' onClick={ () => removeItem(product.item.id)}>Quitar producto</button>
+                               <button style={{marginBottom: "0.5rem", marginTop: "0.5rem", marginRight: "9rem"}} className='btn btn-danger' onClick={ () => removeItem(product.item.id)}>Quitar producto</button>
                               </div>
 
-                              <div className='btn-primary'>
+                              <div className='divSubtotal'>
                                 <h5 className='text-white'>Subtotal: {product.item.price * product.quantity}</h5>
                               </div>
                             </div>
@@ -51,7 +51,7 @@ const Cart = () => {
                     </div>
             )}
               <div className='divTotal'>
-                  <h3 className='text-light'>Total Compra: ${getTotal()}</h3>
+                  <h3 className='text-dark'>Total Compra: ${getTotal()}</h3>
               </div>
               <Link to={"/form"} className='btn btn-success myButton'>Finalizar compra</Link><br />
               <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>

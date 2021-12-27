@@ -32,8 +32,8 @@ export const ItemDetail = ({item}) => {
             <option value="xl">XL</option>
             <option value="xxl">XXL</option>
             </select><br />
-            <h5>Cantidad disponible: {item.stockAvailable}</h5>
-            {count === 0 ? <ItemCount stock={item.stockAvailable} initial={1} onAdd={addHandler} /> : <Link className='btn btn-success' to="/cart">Ir al carrito</Link>}
+            <h5>Cantidad disponible: {item.stock}</h5>
+            {count === 0 ? <ItemCount stock={item.stock} initial={1} onAdd={addHandler} /> : <Link className='btn btn-success' to="/cart">Ir al carrito</Link>}
             <Link to="/" style={{margin:"1rem"}} className="btn btn-primary" >Volver al Home</Link>
         </article>
     )

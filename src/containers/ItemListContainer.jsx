@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import { getProducts } from "../services/products";
-// import { getProductsByCategory } from "../services/products";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/spinner/Spinner";
 import ItemList from "../components/items/ItemList";
@@ -19,9 +17,9 @@ const ItemListContainer = () => {
         if(!categoryId) {
             setLoading(true)
             getDocs(collection(db, "items")).then((querySnapshot) => {
-                console.log(querySnapshot)
+                // console.log(querySnapshot)
                 const products = querySnapshot.docs.map(doc => {
-                    console.log(doc)
+                    // console.log(doc)
                     return { id: doc.id, ...doc.data()}                
                 })
                 setProducts(products)
@@ -32,9 +30,9 @@ const ItemListContainer = () => {
             })
         } else {
             getDocs(query(collection(db, "items"), where("category", "==", categoryId))).then((querySnapshot) => {
-                console.log(querySnapshot)
+                // console.log(querySnapshot)
                 const products = querySnapshot.docs.map(doc => {
-                    console.log(doc)
+                    // console.log(doc)
                     return { id: doc.id, ...doc.data()}                
                 })
                 setProducts(products)

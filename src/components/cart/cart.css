@@ -38,16 +38,14 @@
     width: fit-content;
     margin: 0.5rem;
     padding: 0.5rem;
-    border-radius: 3px;
     border: black solid;
-    background-image: linear-gradient(to right, rgba(210, 4, 4, 100) , rgba(0, 0, 0,0.8));
-
+    background-color: rgba(228, 214, 18, 0.884);
 }
 
 .divSubtotal {
     width: fit-content;
-    margin: 0.5rem;
+    margin: 1rem;
     padding: 0.5rem;
-    border-radius: 3px;
     border: black solid;
+    background-color: rgb(19, 109, 228);
 }
