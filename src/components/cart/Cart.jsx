@@ -1,81 +1,126 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import "./cart.css";
 import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext';
+import CartDetail from './CartDetail';
+// import { db } from "../../services/firebase/firebase";
+import { addDoc, collection, writeBatch, doc, getDoc, getFirestore } from "firebase/firestore";
 
 const Cart = () => {
 
-    const { cart, removeItem } = useContext(CartContext);
-    const { getTotal } = useContext(CartContext);
+    const { cart, clearCart, getTotal, getUser } = useContext(CartContext);
+    const [LoadingOrder, setLoadingOrder] = useState(false);
+    const [form, getForm] = useState({name: "", lastname: "", phone: "", age: "", email: ""})
 
-    const renderCart = () => {
-        return(
-            <div className='cartDiv'>
+  const fillForm = (e) => {
+    const { id, value } = e.target;
+    getForm({
+      ...form,
+      [id]: value,
+    })
+  }
+  
+  const date = new Date();
+
+
+  const finalizar = () => {
+   getUser(form);
+   setLoadingOrder(true);
+
+   const db = getFirestore();
+
+const newOrder = {
+
+  buyer: {name: form.name, lastname: form.lastname, phone: form.phone, age: form.age, email: form.email},
+  items: cart,
+  date: date,
+  total: getTotal(),
+  }
+  const batch = writeBatch(db);
+  const outOfStock = [];
+
+  // addDoc(collection(db, "orders"), newOrder).then(({ id }) => {
+  //   console.log(id)
+  // })
+
+  newOrder.items.forEach((product) => {
+    getDoc(doc(db, "items", product.id)).then((docSnap) => {
+      if (docSnap.data().stock >= product.quantity) {
+        batch.update(doc(db, "items", docSnap.id), {
+          stock: docSnap.data().stock - product.quantity, 
+        });
+      } else {
+        outOfStock.push({id: docSnap.id, ...docSnap.data() });
+      }
+    });
+  });
+
+  if(outOfStock.length === 0) {
+    addDoc(collection(db, "orders"), newOrder)
+    .then((doc) => {
+     batch.commit().then(() => {
+       console.log(`el número de orden es ${doc.id}`);
+     });
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    .finally(() => {
+      setTimeout(() => {
+        clearCart();
+      }, 2000);
+    });
+  }
+
+  };
+    
+    return (
+        <>
+        {cart.length === 0 ? (
+          <div className='emptyCart'>
+            <h2>Tu Carrito está vacío!</h2>
+            <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
+          </div>
+         ) : (
+           <>
+           <div className='cartDiv'>
               <h2>Este es tu Carrito</h2>
-                {cart.map(product =>
-                    <div className='itemProduct container-lg' key={product.item.id}>
-                        <div className='row'>
-
-                            <div className='col-lg-4'>
-                               <img className='imgDetail' src={product.item.picture} alt={product.item.name} />
-                            </div>
-
-                            <div className='col-lg-4'>
-
-                              <div>
-                               <h6>- Producto: {product.item.name}</h6>
-                              </div>
-
-                              <div>
-                               <h6>- Precio: ${product.item.price}</h6>
-                              </div>
-
-                              <div>
-                               <h6>- Unidades: {product.quantity}</h6>
-                              </div>
-                            </div>
-
-                            <div className='col-lg-4'>
-                              <div>
-                               <button style={{marginBottom: "0.5rem", marginTop: "0.5rem", marginRight: "9rem"}} className='btn btn-danger' onClick={ () => removeItem(product.item.id)}>Quitar producto</button>
-                              </div>
-
-                              <div className='divSubtotal'>
-                                <h5 className='text-white'>Subtotal: {product.item.price * product.quantity}</h5>
-                              </div>
-                            </div>
-                              
-
-
-                        </div>   
-                    </div>
-            )}
+                {cart.map((product) => (
+                    <CartDetail key={product.id} product={product}/>
+                ))}
               <div className='divTotal'>
                   <h3 className='text-dark'>Total Compra: ${getTotal()}</h3>
               </div>
-              <Link to={"/form"} className='btn btn-success myButton'>Finalizar compra</Link><br />
               <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
-            </div> 
-        )
-
-    }
-
-    const emptyCart = () => {
-        return (
-            <div className='emptyCart'>
-               <h2>Tu Carrito está vacío!</h2>
-               <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
             </div>
-        )
-       
-    }
-      
-
-    return (
-        <>
-        {cart.length !== 0 ? renderCart() : emptyCart() }
+            {!LoadingOrder ? (
+                 <div>
+                 <h3>Formulario de compra</h3>
+                 <h6>Llena el siguiente formulario para generar el link de pago</h6>
+                 <form className='divForm'>
+                     <input id='name' onChange={fillForm} className='myInput form-control' type="text" placeholder='nombre' /><br />
+                     <input id='lastname' onChange={fillForm} className='myInput form-control' type="text" placeholder='apellido'/><br />
+                     <input id='phone' onChange={fillForm} className='myInput form-control' type="text" placeholder='teléfono'/><br />
+                     <input id='age' onChange={fillForm} className='myInput form-control' type="text" placeholder='edad' /><br />
+                     <input id='email' onChange={fillForm} className='myInput form-control' type="email" placeholder='email'/><br />
+                     <button style={{margin: "0.5rem"}} className='btn btn-primary'>Refresh</button><br />
+                     <button 
+                       type='button'
+                       onClick={finalizar}
+                       disabled={cart?.length === 0 || form.name === "" || form.lastname === "" || form.email === ""} 
+                       style={{margin: "0.5rem"}} 
+                       className='btn btn-success'>
+                         Generar pédido
+                     </button>
+                 </form>
+             </div>
+            ) : (
+              <h1>Estamos Generando su orden</h1> 
+            )}
+           </>
+         )}
         </>
-    )
-}
+    );
+};
 
-export default Cart
+export default Cart;
