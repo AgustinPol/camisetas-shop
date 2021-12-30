@@ -3,76 +3,50 @@ import "./cart.css";
 import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext';
 import CartDetail from './CartDetail';
-// import { db } from "../../services/firebase/firebase";
+import { db } from "../../services/firebase/firebase";
 import { addDoc, collection, writeBatch, doc, getDoc, getFirestore } from "firebase/firestore";
 
 const Cart = () => {
 
-    const { cart, clearCart, getTotal, getUser } = useContext(CartContext);
-    const [LoadingOrder, setLoadingOrder] = useState(false);
-    const [form, getForm] = useState({name: "", lastname: "", phone: "", age: "", email: ""})
+    const [processingOrder, setProcessingOrder] = useState(false);
+   
+    const { cart, clearCart, getTotal } = useContext(CartContext);
 
-  const fillForm = (e) => {
-    const { id, value } = e.target;
-    getForm({
-      ...form,
-      [id]: value,
-    })
-  }
+    const confirmOrder = () => {
+      setProcessingOrder(true)
+      let name = document.getElementById("name").value;
+      let lastname = document.getElementById("lastname").value;
+      let phone = document.getElementById("phone").value;
+      let age = document.getElementById("age").value;
+      let email = document.getElementById("email").value;
+
+      let contact = {
+        name: name,
+        lastname: lastname,
+        phone: phone,
+        age: age,
+        email: email
+      } 
+
+      const newOrder = {
+        buyer: contact,
+        items: cart, 
+        total: getTotal()
+      }
+
+      addDoc(collection(db, "orders"), newOrder).then(({ id }) =>{
+        console.log(id)
+      })
+
+      setTimeout(() => {
+        clearCart()
+        setProcessingOrder(false)
+      }, 1000)
+    }
   
   const date = new Date();
 
 
-  const finalizar = () => {
-   getUser(form);
-   setLoadingOrder(true);
-
-   const db = getFirestore();
-
-const newOrder = {
-
-  buyer: {name: form.name, lastname: form.lastname, phone: form.phone, age: form.age, email: form.email},
-  items: cart,
-  date: date,
-  total: getTotal(),
-  }
-  const batch = writeBatch(db);
-  const outOfStock = [];
-
-  // addDoc(collection(db, "orders"), newOrder).then(({ id }) => {
-  //   console.log(id)
-  // })
-
-  newOrder.items.forEach((product) => {
-    getDoc(doc(db, "items", product.id)).then((docSnap) => {
-      if (docSnap.data().stock >= product.quantity) {
-        batch.update(doc(db, "items", docSnap.id), {
-          stock: docSnap.data().stock - product.quantity, 
-        });
-      } else {
-        outOfStock.push({id: docSnap.id, ...docSnap.data() });
-      }
-    });
-  });
-
-  if(outOfStock.length === 0) {
-    addDoc(collection(db, "orders"), newOrder)
-    .then((doc) => {
-     batch.commit().then(() => {
-       console.log(`el número de orden es ${doc.id}`);
-     });
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-    .finally(() => {
-      setTimeout(() => {
-        clearCart();
-      }, 2000);
-    });
-  }
-
-  };
     
     return (
         <>
@@ -93,21 +67,19 @@ const newOrder = {
               </div>
               <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
             </div>
-            {!LoadingOrder ? (
+            {!processingOrder ? (
                  <div>
                  <h3>Formulario de compra</h3>
-                 <h6>Llena el siguiente formulario para generar el link de pago</h6>
                  <form className='divForm'>
-                     <input id='name' onChange={fillForm} className='myInput form-control' type="text" placeholder='nombre' /><br />
-                     <input id='lastname' onChange={fillForm} className='myInput form-control' type="text" placeholder='apellido'/><br />
-                     <input id='phone' onChange={fillForm} className='myInput form-control' type="text" placeholder='teléfono'/><br />
-                     <input id='age' onChange={fillForm} className='myInput form-control' type="text" placeholder='edad' /><br />
-                     <input id='email' onChange={fillForm} className='myInput form-control' type="email" placeholder='email'/><br />
+                     <input id='name' className='myInput form-control' type="text" placeholder='nombre' /><br />
+                     <input id='lastname' className='myInput form-control' type="text" placeholder='apellido'/><br />
+                     <input id='phone' className='myInput form-control' type="text" placeholder='teléfono'/><br />
+                     <input id='age' className='myInput form-control' type="text" placeholder='edad' /><br />
+                     <input id='email' className='myInput form-control' type="email" placeholder='email'/><br />
                      <button style={{margin: "0.5rem"}} className='btn btn-primary'>Refresh</button><br />
-                     <button 
+                     <button
+                       onClick={confirmOrder} 
                        type='button'
-                       onClick={finalizar}
-                       disabled={cart?.length === 0 || form.name === "" || form.lastname === "" || form.email === ""} 
                        style={{margin: "0.5rem"}} 
                        className='btn btn-success'>
                          Generar pédido
