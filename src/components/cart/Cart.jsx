@@ -12,21 +12,25 @@ const Cart = () => {
    
     const { cart, clearCart, getTotal } = useContext(CartContext);
 
-    const confirmOrder = () => {
-      setProcessingOrder(true)
-      let name = document.getElementById("name").value;
-      let lastname = document.getElementById("lastname").value;
-      let phone = document.getElementById("phone").value;
-      let age = document.getElementById("age").value;
-      let email = document.getElementById("email").value;
+    const [contact, setContact] = useState({
+      name: "",
+      lastname: "",
+      phone: "",
+      age: "",
+      email: ""
+    })
 
-      let contact = {
-        name: name,
-        lastname: lastname,
-        phone: phone,
-        age: age,
-        email: email
-      } 
+    const inputChange = (e) => {
+      setContact({
+        ...contact,
+        [e.target.name] : e.target.value
+      })
+    }
+    
+    const confirmOrder = (e) => {
+      e.preventDefault();
+      console.log(contact.name+contact.lastname)
+      setProcessingOrder(true)
 
       const newOrder = {
         buyer: contact,
@@ -41,7 +45,7 @@ const Cart = () => {
       setTimeout(() => {
         clearCart()
         setProcessingOrder(false)
-      }, 1000)
+      }, 500)
     }
   
   const date = new Date();
@@ -70,16 +74,15 @@ const Cart = () => {
             {!processingOrder ? (
                  <div>
                  <h3>Formulario de compra</h3>
-                 <form className='divForm'>
-                     <input id='name' className='myInput form-control' type="text" placeholder='nombre' /><br />
-                     <input id='lastname' className='myInput form-control' type="text" placeholder='apellido'/><br />
-                     <input id='phone' className='myInput form-control' type="text" placeholder='teléfono'/><br />
-                     <input id='age' className='myInput form-control' type="text" placeholder='edad' /><br />
-                     <input id='email' className='myInput form-control' type="email" placeholder='email'/><br />
+                 <form onSubmit={confirmOrder} className='divForm'>
+                     <input onChange={inputChange} name='name' className='myInput form-control' type="text" placeholder='nombre' /><br />
+                     <input onChange={inputChange} name='lastname' className='myInput form-control' type="text" placeholder='apellido'/><br />
+                     <input onChange={inputChange} name='phone' className='myInput form-control' type="text" placeholder='teléfono'/><br />
+                     <input onChange={inputChange} name='age' className='myInput form-control' type="text" placeholder='edad' /><br />
+                     <input onChange={inputChange} name='email' className='myInput form-control' type="email" placeholder='email'/><br />
                      <button style={{margin: "0.5rem"}} className='btn btn-primary'>Refresh</button><br />
                      <button
-                       onClick={confirmOrder} 
-                       type='button'
+                       type='submit'
                        style={{margin: "0.5rem"}} 
                        className='btn btn-success'>
                          Generar pédido
