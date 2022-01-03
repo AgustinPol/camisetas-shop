@@ -1,11 +1,11 @@
-.img-carrito {
+.imgCarrito {
     width: 2rem;
     height: 2rem;
     border-radius: 3px;
     margin-left: 0.5rem;
 }
 
-.cont-carrito {
+.contCarrito {
     width: 8rem;
     margin: 0.3rem;
 }

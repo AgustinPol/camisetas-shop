@@ -9,7 +9,7 @@ const CartWidget = () => {
   const { totalQuantity } = useContext(CartContext);
     return (
       
-        <div className="cont-carrito">        
+        <div className="contCarrito">        
         <Link className="btn btn-outline-info text-white" to="/cart" type="button">
           <div className="container-lg">
             <div className="row">
@@ -17,7 +17,7 @@ const CartWidget = () => {
                 <span className="counterCart badge bg-light text-dark ms-1 rounded-pill">{totalQuantity}</span>
               </div>
               <div className="col-lg-4">
-                <img className="img-carrito" src={"../images/carrito1.png"} alt="imagen-carrito" />
+                <img className="imgCarrito" src={"../images/carrito1.png"} alt="imagen-carrito" />
               </div>
             </div>
           </div>

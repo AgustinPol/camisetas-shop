@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext';
 import CartDetail from './CartDetail';
 import { db } from "../../services/firebase/firebase";
-import { addDoc, collection, writeBatch, doc, getDoc, getFirestore } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 const Cart = () => {
 
@@ -35,7 +35,8 @@ const Cart = () => {
       const newOrder = {
         buyer: contact,
         items: cart, 
-        total: getTotal()
+        total: getTotal(),
+        date: date
       }
 
       addDoc(collection(db, "orders"), newOrder).then(({ id }) =>{
