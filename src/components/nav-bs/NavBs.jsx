@@ -11,8 +11,8 @@ const NavBs = () => {
   
   useEffect(() => {
     getDocs(collection(db, "categories")).then((querySnapshot) => {
-const categories = querySnapshot.docs.map(doc => {
-  return {id:doc.id, ...doc.data() }
+    const categories = querySnapshot.docs.map(doc => {
+    return {id:doc.id, ...doc.data() }
 })
 setCategories(categories)
     })
@@ -30,16 +30,13 @@ setCategories(categories)
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav">
           {
-            categories.map(cat => 
-            <li className="nav-item col-lg-5" style={{margin: "0.5rem"}}>
-            <Link key={cat.id}  to={`/category/${cat.id}`} className="nav-link active btn btn-outline-light" aria-current="page" href="divFooter">{cat.description}</Link>
-          </li>)}
-          {/* <li className="nav-item col-lg-5" style={{margin: "0.5rem"}}>
-            <Link to="/category/internacional" className="nav-link active btn btn-outline-light" aria-current="page" href="divFooter">Internacionales</Link>
-          </li>
-          <li className="nav-item col-lg-5" style={{margin: "0.5rem"}}>
-            <Link to="/category/selecciones" className="nav-link active btn btn-outline-light" aria-current="page" href="divFooter">Selecciones</Link>
-          </li> */}
+            categories.map((cat) => 
+              <li key={cat.id} className="nav-item col-lg-5" style={{margin: "0.5rem"}}>
+             <Link key={cat.id}  to={`/category/${cat.id}`} className="nav-link active btn btn-outline-light" aria-current="page" href="divFooter">{cat.description} </Link>
+            </li>
+            )}
+            
+           
         </ul>
       </div>
     </div>

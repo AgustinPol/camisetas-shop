@@ -2,15 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCtHzdDqu9iiDDxlOl-TyMKvGsgdfsRMKI",
-    authDomain: "camisetas-shop.firebaseapp.com",
-    projectId: "camisetas-shop",
-    storageBucket: "camisetas-shop.appspot.com",
-    messagingSenderId: "165812124241",
-    appId: "1:165812124241:web:84a860700c1dbeb7745670"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId
   };
-
-
 
 const app = initializeApp(firebaseConfig);
 
