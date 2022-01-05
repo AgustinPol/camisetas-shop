@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import "./cart.css";
 import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext';
 import CartDetail from './CartDetail';
 import { db } from "../../services/firebase/firebase";
 import { addDoc, collection } from "firebase/firestore";
+import "./cart.css";
 
 const Cart = () => {
 
@@ -36,7 +36,7 @@ const Cart = () => {
         buyer: contact,
         items: cart, 
         total: getTotal(),
-        date: date
+        date: dateOfPurchase
       }
 
       addDoc(collection(db, "orders"), newOrder).then(({ id }) =>{
@@ -49,7 +49,7 @@ const Cart = () => {
       }, 500)
     }
   
-  const date = new Date();
+  const dateOfPurchase = new Date();
 
 
     
@@ -70,8 +70,8 @@ const Cart = () => {
               <div className='divTotal'>
                   <h3 className='text-dark'>Total Compra: ${getTotal()}</h3>
               </div>
-              <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
             </div>
+
             {!processingOrder ? (
                  <div>
                  <h3>Formulario de compra</h3>

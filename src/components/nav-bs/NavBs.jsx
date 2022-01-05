@@ -10,13 +10,19 @@ const NavBs = () => {
   const [categories, setCategories] = useState([])
   
   useEffect(() => {
-    getDocs(collection(db, "categories")).then((querySnapshot) => {
-    const categories = querySnapshot.docs.map(doc => {
-    return {id:doc.id, ...doc.data() }
-})
-setCategories(categories)
-    })
-    
+    (async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "categories"))
+        const categories = querySnapshot.docs.map(doc => {
+          return {id: doc.id, ...doc.data() }
+        })
+        setCategories(categories)
+      } catch (error) {
+        console.log("error searching categories", error)
+      }
+
+      })()
+   
   },[])
    
     return (

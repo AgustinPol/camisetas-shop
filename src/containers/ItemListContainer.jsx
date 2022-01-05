@@ -5,7 +5,7 @@ import Spinner from "../components/spinner/Spinner";
 import ItemList from "../components/items/ItemList";
 import { collection,getDocs, query, where } from "firebase/firestore";
 import { db } from "../services/firebase/firebase"; 
-import "../containers/style-cont.css";
+import "../containers/style.css";
 
 
 const ItemListContainer = () => {

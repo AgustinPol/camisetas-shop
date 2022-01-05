@@ -1,4 +1,4 @@
-.myCard {
+.myCheckout {
     margin: 1.5rem;
     width: 18rem;
     height: 75vh;
@@ -11,16 +11,4 @@
     box-shadow: 11px 10px 28px -2px rgba(0,0,0,0.75);
     transition: background-color 0.5s ease;
     transition: transform .5s;
-
 }
-
-.imgCamisetas {
-    width: 10rem;
-    height: 10rem;
-}
-
-  .myCard:hover{
-    -ms-transform: scale(1.10);
-    -webkit-transform: scale(1.10); 
-    transform: scale(1.10); 
-  }
