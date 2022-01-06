@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext';
 import CartDetail from './CartDetail';
 import { db } from "../../services/firebase/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, writeBatch, getDoc, doc } from "firebase/firestore";
 import "./cart.css";
 
 const Cart = () => {
@@ -39,14 +39,42 @@ const Cart = () => {
         date: dateOfPurchase
       }
 
-      addDoc(collection(db, "orders"), newOrder).then(({ id }) =>{
-        console.log(id)
-      })
+      const batch = writeBatch(db)
+      const outOfStock = []
 
-      setTimeout(() => {
-        clearCart()
+      // addDoc(collection(db, "orders"), newOrder).then(({ id }) =>{
+      //   console.log(id)
+      // })
+    
+    newOrder.items.forEach((prod) => {
+     getDoc(doc(db, "items", prod.item.id)).then((documentSnapshot) =>{
+      if(documentSnapshot.data().stock >= prod.quantity) {
+      batch.update(doc(db, "items", documentSnapshot.id), {
+        stock: documentSnapshot.data().stock - prod.quantity,
+      })
+    } else {
+      outOfStock.push({ id: documentSnapshot.id, ...documentSnapshot.data()})
+    }
+    })
+    })
+
+    if(outOfStock.length === 0) {
+      addDoc(collection(db, "orders"), newOrder).then(({id}) => {
+        batch.commit().then(() => {
+          console.log(`el id de su orden es ${id}`)
+        })
+      }).catch((error) => {
+        console.log(`error ejecutando la orden: ${error}`)
+      }).finally(() => {
         setProcessingOrder(false)
-      }, 500)
+        clearCart()
+      })
+    }
+
+      // setTimeout(() => {
+      //   clearCart()
+      //   setProcessingOrder(false)
+      // }, 500)
     }
   
   const dateOfPurchase = new Date();
