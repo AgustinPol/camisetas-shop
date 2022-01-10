@@ -12,6 +12,8 @@ const Cart = () => {
    
     const { cart, clearCart, getTotal } = useContext(CartContext);
 
+    const [orderGenerated, setOrderGenerated] = useState("")
+
     const [contact, setContact] = useState({
       name: "",
       lastname: "",
@@ -26,11 +28,16 @@ const Cart = () => {
         [e.target.name] : e.target.value
       })
     }
+
+    const changeStateOrder = () => {
+      setProcessingOrder(true)
+    }
     
     const confirmOrder = (e) => {
       e.preventDefault();
-      console.log(contact.name+contact.lastname)
-      setProcessingOrder(true)
+      changeStateOrder(contact.name);
+      // console.log(contact.name+contact.lastname)
+      // setProcessingOrder(true)
 
       const newOrder = {
         buyer: contact,
@@ -42,10 +49,6 @@ const Cart = () => {
       const batch = writeBatch(db)
       const outOfStock = []
 
-      // addDoc(collection(db, "orders"), newOrder).then(({ id }) =>{
-      //   console.log(id)
-      // })
-    
     newOrder.items.forEach((prod) => {
      getDoc(doc(db, "items", prod.item.id)).then((documentSnapshot) =>{
       if(documentSnapshot.data().stock >= prod.quantity) {
@@ -61,6 +64,7 @@ const Cart = () => {
     if(outOfStock.length === 0) {
       addDoc(collection(db, "orders"), newOrder).then(({id}) => {
         batch.commit().then(() => {
+          setOrderGenerated(id)
           console.log(`el id de su orden es ${id}`)
         })
       }).catch((error) => {
@@ -71,39 +75,36 @@ const Cart = () => {
       })
     }
 
-      // setTimeout(() => {
-      //   clearCart()
-      //   setProcessingOrder(false)
-      // }, 500)
     }
   
   const dateOfPurchase = new Date();
 
-
+if(cart.length === 0) {
+  return (
+    <div className='emptyCart'>
+      <h1>Carrito</h1>
+      <h2>No hay productos en su carrito!</h2>
+      <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
+    </div>
+  )
+}
     
     return (
-        <>
-        {cart.length === 0 ? (
-          <div className='emptyCart'>
-            <h2>Tu Carrito está vacío!</h2>
-            <Link className='btn btn-primary myButton' to="/">Volver al Home</Link>
-          </div>
-         ) : (
-           <>
-           <div className='cartDiv'>
-              <h2>Este es tu Carrito</h2>
-              <div>
-                 {cart.map(product => <CartDetail key={product.id} product={product}/>)}
-              </div>
-              <div className='divTotal'>
-                  <h3 className='text-dark'>Total Compra: ${getTotal()}</h3>
-              </div>
-            </div>
+        <div className='cartDiv'>
+          <h1>Carrito</h1>
+          { !processingOrder && cart.length > 0 
+            ?
+            cart.map(product => <CartDetail key={product.item.id} product={product}/>)
 
-            {!processingOrder ? (
-                 <div>
+            : "procesando orden"
+          }
+            {(cart.length > 0 && !processingOrder) && <div className='divTotal'><h3>Total: ${getTotal()}</h3></div>}
+            {(!processingOrder && cart.length > 0) && <button onClick={() => clearCart()} className="btn btn-danger btnSize">Cancelar compra</button>}
+            {(!processingOrder && cart.length > 0) && <button onClick={() => changeStateOrder()} className="btn btn-success btnSize">Confirmar Compra</button>}
+            {(processingOrder && cart.length > 0) &&  
+              <div>
                  <h3>Formulario de compra</h3>
-                 <form onSubmit={confirmOrder} className='divForm'>
+                  <form onSubmit={confirmOrder} className='divForm'>
                      <input onChange={inputChange} name='name' className='myInput form-control' type="text" placeholder='nombre' /><br />
                      <input onChange={inputChange} name='lastname' className='myInput form-control' type="text" placeholder='apellido'/><br />
                      <input onChange={inputChange} name='phone' className='myInput form-control' type="text" placeholder='teléfono'/><br />
@@ -116,14 +117,17 @@ const Cart = () => {
                        className='btn btn-success'>
                          Generar pédido
                      </button>
-                 </form>
-             </div>
-            ) : (
-              <h1>Estamos Generando su orden</h1> 
-            )}
-           </>
-         )}
-        </>
+                  </form>
+              </div>
+            }
+            { (orderGenerated) &&
+            <div>
+              <h3>Felicidades, orden generada</h3>
+              <h4>El identificador de su orden es: <strong>{orderGenerated}</strong></h4>
+            </div> 
+            }
+        </div>
+      
     );
 };
 

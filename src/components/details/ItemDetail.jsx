@@ -12,7 +12,6 @@ export const ItemDetail = ({item}) => {
 
     const addHandler = (contador)=>{
         addItem(item, contador);
-        console.log('Se agregó un nuevo producto')
         setCount(contador)
     }
     

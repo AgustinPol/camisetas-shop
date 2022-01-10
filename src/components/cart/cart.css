@@ -35,7 +35,7 @@
 }
 
 .divTotal {
-    width: fit-content;
+    display: inline-block;
     margin: 0.5rem;
     padding: 0.5rem;
     border: black solid;
@@ -48,4 +48,8 @@
     padding: 0.5rem;
     border: black solid;
     background-color: rgb(19, 109, 228);
+}
+
+.btnSize {
+margin: 0.5rem;
 }
