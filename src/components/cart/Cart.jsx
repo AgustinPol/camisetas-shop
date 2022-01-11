@@ -110,17 +110,16 @@ if(cart.length === 0) {
                      <input onChange={inputChange} name='phone' className='myInput form-control' type="text" placeholder='teléfono'/><br />
                      <input onChange={inputChange} name='age' className='myInput form-control' type="text" placeholder='edad' /><br />
                      <input onChange={inputChange} name='email' className='myInput form-control' type="email" placeholder='email'/><br />
-                     <button style={{margin: "0.5rem"}} className='btn btn-primary'>Refresh</button><br />
+                     <button className='btn btn-primary btnSize'>Cancelar Compra</button><br />
                      <button
                        type='submit'
-                       style={{margin: "0.5rem"}} 
-                       className='btn btn-success'>
+                       className='btn btnSize btn-success'>
                          Generar pédido
                      </button>
                   </form>
               </div>
             }
-            { (orderGenerated) &&
+            {(orderGenerated) &&
             <div>
               <h3>Felicidades, orden generada</h3>
               <h4>El identificador de su orden es: <strong>{orderGenerated}</strong></h4>
