@@ -8,12 +8,9 @@ import "./cart.css";
 
 const Cart = () => {
 
-    const [processingOrder, setProcessingOrder] = useState(false);
-   
+    const [processingOrder, setProcessingOrder] = useState(false);  
     const { cart, clearCart, getTotal } = useContext(CartContext);
-
     const [orderGenerated, setOrderGenerated] = useState("")
-
     const [contact, setContact] = useState({
       name: "",
       lastname: "",
@@ -35,8 +32,6 @@ const Cart = () => {
     
     const confirmOrder = (e) => {
       e.preventDefault();
-      changeStateOrder(contact.name);
-      // console.log(contact.name+contact.lastname)
       // setProcessingOrder(true)
 
       const newOrder = {
@@ -64,14 +59,14 @@ const Cart = () => {
     if(outOfStock.length === 0) {
       addDoc(collection(db, "orders"), newOrder).then(({id}) => {
         batch.commit().then(() => {
-          setOrderGenerated(id)
-          console.log(`el id de su orden es ${id}`)
+          setOrderGenerated(id);
+          console.log(`el id de su orden es ${id}`);
         })
       }).catch((error) => {
-        console.log(`error ejecutando la orden: ${error}`)
+        console.log(`error ejecutando la orden: ${error}`);
       }).finally(() => {
-        setProcessingOrder(false)
-        clearCart()
+        setProcessingOrder(false);
+        clearCart();
       })
     }
 
@@ -100,26 +95,29 @@ if(cart.length === 0) {
           }
             {(cart.length > 0 && !processingOrder) && <div className='divTotal'><h3>Total: ${getTotal()}</h3></div>}
             {(!processingOrder && cart.length > 0) && <button onClick={() => clearCart()} className="btn btn-danger btnSize">Cancelar compra</button>}
-            {(!processingOrder && cart.length > 0) && <button onClick={() => changeStateOrder()} className="btn btn-success btnSize">Confirmar Compra</button>}
+            {(!processingOrder && cart.length > 0) && <button onClick={() => setProcessingOrder(true)} className="btn btn-success btnSize">Confirmar Compra</button>}
             {(processingOrder && cart.length > 0) &&  
               <div>
                  <h3>Formulario de compra</h3>
                   <form onSubmit={confirmOrder} className='divForm'>
-                     <input onChange={inputChange} name='name' className='myInput form-control' type="text" placeholder='nombre' /><br />
-                     <input onChange={inputChange} name='lastname' className='myInput form-control' type="text" placeholder='apellido'/><br />
-                     <input onChange={inputChange} name='phone' className='myInput form-control' type="text" placeholder='teléfono'/><br />
-                     <input onChange={inputChange} name='age' className='myInput form-control' type="text" placeholder='edad' /><br />
-                     <input onChange={inputChange} name='email' className='myInput form-control' type="email" placeholder='email'/><br />
-                     <button className='btn btn-primary btnSize'>Cancelar Compra</button><br />
+                     <input onChange={inputChange} value={contact.name}required name='name' className='myInput form-control' type="text" placeholder='nombre' /><br />
+                     <input onChange={inputChange} value={contact.lastname}required name='lastname' className='myInput form-control' type="text" placeholder='apellido'/><br />
+                     <input onChange={inputChange} value={contact.phone}required name='phone' className='myInput form-control' type="text" placeholder='teléfono'/><br />
+                     <input onChange={inputChange} value={contact.age}required name='age' className='myInput form-control' type="text" placeholder='edad' /><br />
+                     <input onChange={inputChange} value={contact.email}required name='email' className='myInput form-control' type="email" placeholder='email'/><br />
                      <button
                        type='submit'
                        className='btn btnSize btn-success'>
                          Generar pédido
                      </button>
                   </form>
+                  <div>
+                     <button onClick={clearCart} className='btn btn-danger btnSize'>Cancelar Compra</button><br />
+                     <button onClick={() => setProcessingOrder(false)} className='btn btn-primary btnSize'>Volver al carrito </button>
+                  </div>
               </div>
             }
-            {(orderGenerated) &&
+            {(orderGenerated !== "") &&
             <div>
               <h3>Felicidades, orden generada</h3>
               <h4>El identificador de su orden es: <strong>{orderGenerated}</strong></h4>
