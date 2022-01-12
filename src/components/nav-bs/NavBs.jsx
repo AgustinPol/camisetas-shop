@@ -6,7 +6,7 @@ import { db } from "../../services/firebase/firebase";
 import { getDocs, collection } from "firebase/firestore"
 
 const NavBs = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, orderGenerated } = useContext(CartContext);
   const [categories, setCategories] = useState([])
   
   useEffect(() => {
@@ -26,7 +26,9 @@ const NavBs = () => {
   },[])
    
     return (
-<header>
+
+  <header>
+  {(orderGenerated === "") && 
   <nav className="navbar navbar-expand-lg bg-dark bg-gradient">
     <div className="container-fluid">
       <Link className="navbar-brand btn btn-outline-light" to={"/"}>Camisetas-Shop</Link>
@@ -49,8 +51,9 @@ const NavBs = () => {
   <>
   { cart.length !== 0 ? <CartWidget/> : null }
   </>  
-  </nav>
+  </nav>}
 </header>
+
     )
 }
 export default NavBs;

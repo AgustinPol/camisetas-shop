@@ -1,12 +1,13 @@
 import React, {useContext} from "react";
 import { CartContext} from "../../context/CartContext"; 
+import "./cart.css"
 
 const CartDetail = ({ product }) => {
     const { removeItem } = useContext(CartContext); 
 
     return (
       <> 
-                    <div className='itemProduct container-lg' key={product.item.id}>
+                    <div className='itemProduct container-lg cartDiv' key={product.item.id}>
                         <div className='row'>
 
                             <div className='col-lg-4'>

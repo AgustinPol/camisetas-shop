@@ -6,6 +6,9 @@ export const CartProvider = ({children}) => {
 
 const [cart, setCart] = useState([]);
 const [totalQuantity, setTotalQuantity] = useState(0);
+const [orderGenerated, setOrderGenerated] = useState("");
+const [processingOrder, setProcessingOrder] = useState(false);  
+
 
 const addItem = (newProduct, newQuantity) => {   
     const repeatedProduct = cart.find(e => e.item.id === newProduct.id)
@@ -56,6 +59,6 @@ const getTotal = () => {
     return total;
 }
 
-  return <CartContext.Provider value={{cart, addItem, removeItem, getTotal, clearCart, isInCart, totalQuantity}}>{children}</CartContext.Provider>
+  return <CartContext.Provider value={{cart, addItem, removeItem, getTotal, clearCart, isInCart, processingOrder, setProcessingOrder, orderGenerated, setOrderGenerated, totalQuantity}}>{children}</CartContext.Provider>
 }
 
