@@ -20,8 +20,8 @@ const Cart = () => {
     })
 
     const finalHandle = () => {
-      setProcessingOrder(false)
-      setOrderGenerated("")
+      setProcessingOrder(false);
+      setOrderGenerated("");
     }
 
     const inputChange = (e) => {
@@ -72,12 +72,13 @@ const Cart = () => {
   
   const dateOfPurchase = new Date();
 
+
 if(cart.length === 0 && processingOrder === false) {
   return (
     <div className='emptyCart'>
       <h1>Carrito</h1>
       <h2>No hay productos en su carrito!</h2>
-      <NavLink className='btn btn-primary myButton' to="/">Volver al Home</NavLink>
+      <NavLink className='btn btn-primary myButton' to="/">Volver a la página!</NavLink>
     </div>
   )
 }
@@ -114,9 +115,9 @@ if(cart.length === 0 && processingOrder === false) {
             }
             {(orderGenerated !== "" && processingOrder === true) &&
             <div className='buyConfirmation'>
-              <h3>Felicidades, la orden fue generada</h3>
+              <h3>Felicidades, la orden fue generada! Gracias por su compra!</h3>
               <h4>El identificador de su orden es: <strong>{orderGenerated}</strong></h4>
-              <button onClick={finalHandle} className='btn btn-primary btnSize'>Volver Atras!</button>
+              <button onClick={finalHandle} className='btn btn-primary btnSize'>Volver Atrás!</button>
             </div> 
             }
         </>
