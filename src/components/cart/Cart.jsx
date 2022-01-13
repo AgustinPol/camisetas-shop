@@ -90,18 +90,62 @@ if(cart.length === 0 && processingOrder === false) {
 
           }
         
-            {(cart.length > 0 && !processingOrder) && <div className='divTotal'><h3>Total: ${getTotal()}</h3></div>}
-            {(!processingOrder && cart.length > 0) && <button onClick={() => clearCart()} className="btn btn-danger btnSize">Cancelar compra</button>}
-            {(!processingOrder && cart.length > 0) && <button onClick={() => setProcessingOrder(true)} className="btn btn-success btnSize">Confirmar Compra</button>}
-            {(processingOrder && cart.length > 0) &&  
+          {(cart.length > 0 && !processingOrder) && 
+          <div className='divTotal'><h3>Total: ${getTotal()}</h3></div>}
+
+          {(!processingOrder && cart.length > 0) && 
+          <button onClick={() => clearCart()} className="btn btn-danger btnSize">Vaciar Carrito</button>}
+
+          {(!processingOrder && cart.length > 0) && 
+          <button onClick={() => setProcessingOrder(true)} className="btn btn-success btnSize">Confirmar Compra</button>}
+
+          {(!processingOrder && cart.length > 0) && 
+          <NavLink to="/" className='btn btn-primary btnSize'>Volver al home</NavLink>}
+
+          {(processingOrder && cart.length > 0) &&  
               <div>
                  <h3>Formulario de compra</h3>
                   <form onSubmit={confirmOrder} className='divForm'>
-                     <input onChange={inputChange} value={contact.name}required name='name' className='myInput form-control' type="text" placeholder='nombre' /><br />
-                     <input onChange={inputChange} value={contact.lastname}required name='lastname' className='myInput form-control' type="text" placeholder='apellido'/><br />
-                     <input onChange={inputChange} value={contact.phone}required name='phone' className='myInput form-control' type="text" placeholder='teléfono'/><br />
-                     <input onChange={inputChange} value={contact.age}required name='age' className='myInput form-control' type="text" placeholder='edad' /><br />
-                     <input onChange={inputChange} value={contact.email}required name='email' className='myInput form-control' type="email" placeholder='email'/><br />
+                     <input 
+                     onChange={inputChange} 
+                     value={contact.name}required 
+                     name='name' 
+                     className='myInput form-control' 
+                     type="text" 
+                     placeholder='nombre' /><br />
+
+                     <input 
+                     onChange={inputChange} 
+                     value={contact.lastname}required 
+                     name='lastname' 
+                     className='myInput form-control' 
+                     type="text" 
+                     placeholder='apellido'/><br />
+
+                     <input 
+                     onChange={inputChange} 
+                     value={contact.phone}required 
+                     name='phone' 
+                     className='myInput form-control' 
+                     type="text" 
+                     placeholder='teléfono'/><br />
+
+                     <input 
+                     onChange={inputChange} 
+                     value={contact.age}required 
+                     name='age' 
+                     className='myInput form-control' 
+                     type="text" 
+                     placeholder='edad' /><br />
+
+                     <input 
+                     onChange={inputChange} 
+                     value={contact.email}required 
+                     name='email' 
+                     className='myInput form-control' 
+                     type="email"
+                     placeholder='email'/><br />
+
                      <button
                        type='submit'
                        className='btn btnSize btn-success'>
@@ -109,7 +153,11 @@ if(cart.length === 0 && processingOrder === false) {
                      </button>
                   </form>
                   <div>
-                     <button onClick={() => setProcessingOrder(false)} className='btn btn-primary btnSize'>Volver al carrito </button>
+                     <button 
+                       onClick={() => setProcessingOrder(false)} 
+                       className='btn btn-primary btnSize'>
+                       Volver al carrito 
+                     </button>
                   </div>
               </div>
             }

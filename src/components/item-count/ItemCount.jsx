@@ -23,8 +23,19 @@ const ItemCount = (props) =>{
             <div>
                 <div>
                     <span className="btn btn-outline-secondary">{count}</span><br />
-                    <button style={{margin:4}} onClick={decrement} className="btn btn-outline-dark">-</button>
-                    <button style={{margin:4}} onClick={increment} className="btn btn-outline-dark">+</button><br />
+                    <button 
+                    style={{margin:4}} 
+                    onClick={decrement} 
+                    className="btn btn-outline-dark">
+                        -
+                    </button>
+
+                    <button 
+                    style={{margin:4}} 
+                    onClick={increment} 
+                    className="btn btn-outline-dark">
+                        +
+                    </button><br />
                 </div>
 
                 {   count > 0 ? 

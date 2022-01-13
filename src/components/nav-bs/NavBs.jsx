@@ -32,15 +32,29 @@ const NavBs = () => {
   <nav className="navbar navbar-expand-lg bg-dark bg-gradient">
     <div className="container-fluid">
       <Link className="navbar-brand btn btn-outline-light" to={"/"}>Camisetas-Shop</Link>
-        <button className="navbar-toggler bg-light navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon bg-dark"></span>
+        <button 
+          className="navbar-toggler bg-light navbar-dark" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarNavDropdown" 
+          aria-controls="navbarNavDropdown" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation">
+           <span className="navbar-toggler-icon bg-dark"></span>
         </button>
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav">
           {
-            categories.map((cat) => 
-              <li key={cat.id} className="nav-item col-lg-5" style={{margin: "0.5rem"}}>
-             <Link key={cat.id}  to={`/category/${cat.id}`} className="nav-link active btn btn-outline-light" aria-current="page" href="divFooter">{cat.description} </Link>
+            categories.map((category) => 
+              <li key={category.id} className="nav-item col-lg-5" style={{margin: "0.5rem"}}>
+             <Link 
+               key={category.id}  
+               to={`/category/${category.id}`} 
+               className="nav-link active btn btn-outline-light" 
+               aria-current="page" 
+               href="divFooter">
+               {category.description} 
+             </Link>
             </li>
             )}
             

@@ -7,7 +7,12 @@ const Item = ({ prod }) => {
         <article className="myCard">
             <img src={prod.picture} className="imgCamisetas" alt={prod.name} />
             <h3>{prod.name}</h3>
-            <Link style={{margin: "0.5rem"}} className="btn btn-primary" to={`/item/${prod.id}`}>Ver detalle</Link>
+            <Link 
+              style={{margin: "0.5rem"}} 
+              className="btn btn-primary"
+              to={`/item/${prod.id}`}>
+                Ver detalle
+            </Link>
             <h6>Envíos gratis en Caba y Gran Buenos Aires</h6>
         </article> 
     )
