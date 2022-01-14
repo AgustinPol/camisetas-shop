@@ -97,3 +97,5 @@ Al no contar con base de datos al comenzar el proyecto, los habiamos simulados c
 
 Usamos las variables de entorno para proteger nuestra base de datos y no todo el mundo pueda utilizarla y tener acceso a ella. Hay un archivo que se llama ".env" el cual está a la misma altura que el Readme o el package.json. 
 
+![Animation](https://user-images.githubusercontent.com/87732780/149432712-5d2fe321-327e-4de0-a715-4bc5b7143b0a.gif)
+
