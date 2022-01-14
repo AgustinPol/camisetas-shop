@@ -41,11 +41,12 @@ const Cart = () => {
         date: dateOfPurchase
       }
 
-      const batch = writeBatch(db)
       const outOfStock = []
 
     newOrder.items.forEach((prod) => {
-     getDoc(doc(db, "items", prod.item.id)).then((documentSnapshot) =>{
+      const batch = writeBatch(db)
+
+     getDoc(doc(db, "items", prod.item.id)).then((documentSnapshot) => {
       if(documentSnapshot.data().stock >= prod.quantity) {
       batch.update(doc(db, "items", documentSnapshot.id), {
         stock: documentSnapshot.data().stock - prod.quantity,
@@ -57,6 +58,8 @@ const Cart = () => {
     })
 
     if(outOfStock.length === 0) {
+      const batch = writeBatch(db)
+
       addDoc(collection(db, "orders"), newOrder).then(({id}) => {
         batch.commit().then(() => {
           setOrderGenerated(id);
@@ -70,106 +73,106 @@ const Cart = () => {
 
     }
   
-  const dateOfPurchase = new Date();
+      const dateOfPurchase = new Date();
 
 
-if(cart.length === 0 && processingOrder === false) {
-  return (
-    <div className='emptyCart'>
-      <h1>Carrito</h1>
-      <h2>No hay productos en su carrito!</h2>
-      <NavLink className='btn btn-primary myButton' to="/">Volver a la página!</NavLink>
-    </div>
-  )
-}
+      if(cart.length === 0 && processingOrder === false) {
+        return (
+          <div className='emptyCart'>
+            <h1>Carrito</h1>
+            <h2>No hay productos en su carrito!</h2>
+            <NavLink className='btn btn-primary myButton' to="/">Volver a la página!</NavLink>
+          </div>
+        )
+      }
     
-    return (
-      <>
-          { (!processingOrder && cart.length > 0) && 
-            cart.map(product => <CartDetail key={product.item.id} product={product}/>)
+      return (
+        <>
+            { (!processingOrder && cart.length > 0) && 
+              cart.map(product => <CartDetail key={product.item.id} product={product}/>)
 
-          }
-        
-          {(cart.length > 0 && !processingOrder) && 
-          <div className='divTotal'><h3>Total: ${getTotal()}</h3></div>}
-
-          {(!processingOrder && cart.length > 0) && 
-          <button onClick={() => clearCart()} className="btn btn-danger btnSize">Vaciar Carrito</button>}
-
-          {(!processingOrder && cart.length > 0) && 
-          <button onClick={() => setProcessingOrder(true)} className="btn btn-success btnSize">Confirmar Compra</button>}
-
-          {(!processingOrder && cart.length > 0) && 
-          <NavLink to="/" className='btn btn-primary btnSize'>Volver al home</NavLink>}
-
-          {(processingOrder && cart.length > 0) &&  
-              <div>
-                 <h3>Formulario de compra</h3>
-                  <form onSubmit={confirmOrder} className='divForm'>
-                     <input 
-                     onChange={inputChange} 
-                     value={contact.name}required 
-                     name='name' 
-                     className='myInput form-control' 
-                     type="text" 
-                     placeholder='nombre' /><br />
-
-                     <input 
-                     onChange={inputChange} 
-                     value={contact.lastname}required 
-                     name='lastname' 
-                     className='myInput form-control' 
-                     type="text" 
-                     placeholder='apellido'/><br />
-
-                     <input 
-                     onChange={inputChange} 
-                     value={contact.phone}required 
-                     name='phone' 
-                     className='myInput form-control' 
-                     type="text" 
-                     placeholder='teléfono'/><br />
-
-                     <input 
-                     onChange={inputChange} 
-                     value={contact.age}required 
-                     name='age' 
-                     className='myInput form-control' 
-                     type="text" 
-                     placeholder='edad' /><br />
-
-                     <input 
-                     onChange={inputChange} 
-                     value={contact.email}required 
-                     name='email' 
-                     className='myInput form-control' 
-                     type="email"
-                     placeholder='email'/><br />
-
-                     <button
-                       type='submit'
-                       className='btn btnSize btn-success'>
-                         Generar pédido
-                     </button>
-                  </form>
-                  <div>
-                     <button 
-                       onClick={() => setProcessingOrder(false)} 
-                       className='btn btn-primary btnSize'>
-                       Volver al carrito 
-                     </button>
-                  </div>
-              </div>
             }
-            {(orderGenerated !== "" && processingOrder === true) &&
-            <div className='buyConfirmation'>
-              <h3>Felicidades, la orden fue generada! Gracias por su compra!</h3>
-              <h4>El identificador de su orden es: <strong>{orderGenerated}</strong></h4>
-              <button onClick={finalHandle} className='btn btn-primary btnSize'>Volver Atrás!</button>
-            </div> 
-            }
-        </>
-    );
+          
+            {(cart.length > 0 && !processingOrder) && 
+            <div className='divTotal'><h3>Total: ${getTotal()}</h3></div>}
+
+            {(!processingOrder && cart.length > 0) && 
+            <button onClick={() => clearCart()} className="btn btn-danger btnSize">Vaciar Carrito</button>}
+
+            {(!processingOrder && cart.length > 0) && 
+            <button onClick={() => setProcessingOrder(true)} className="btn btn-success btnSize">Confirmar Compra</button>}
+
+            {(!processingOrder && cart.length > 0) && 
+            <NavLink to="/" className='btn btn-primary btnSize'>Volver al home</NavLink>}
+
+            {(processingOrder && cart.length > 0) &&  
+                <div>
+                  <h3>Formulario de compra</h3>
+                    <form onSubmit={confirmOrder} className='divForm'>
+                      <input 
+                      onChange={inputChange} 
+                      value={contact.name}required 
+                      name='name' 
+                      className='myInput form-control' 
+                      type="text" 
+                      placeholder='nombre' /><br />
+
+                      <input 
+                      onChange={inputChange} 
+                      value={contact.lastname}required 
+                      name='lastname' 
+                      className='myInput form-control' 
+                      type="text" 
+                      placeholder='apellido'/><br />
+
+                      <input 
+                      onChange={inputChange} 
+                      value={contact.phone}required 
+                      name='phone' 
+                      className='myInput form-control' 
+                      type="text" 
+                      placeholder='teléfono'/><br />
+
+                      <input 
+                      onChange={inputChange} 
+                      value={contact.age}required 
+                      name='age' 
+                      className='myInput form-control' 
+                      type="text" 
+                      placeholder='edad' /><br />
+
+                      <input 
+                      onChange={inputChange} 
+                      value={contact.email}required 
+                      name='email' 
+                      className='myInput form-control' 
+                      type="email"
+                      placeholder='email'/><br />
+
+                      <button
+                        type='submit'
+                        className='btn btnSize btn-success'>
+                          Generar pédido
+                      </button>
+                    </form>
+                    <div>
+                      <button 
+                        onClick={() => setProcessingOrder(false)} 
+                        className='btn btn-primary btnSize'>
+                        Volver al carrito 
+                      </button>
+                    </div>
+                </div>
+              }
+              {(orderGenerated !== "" && processingOrder === true) &&
+              <div className='buyConfirmation'>
+                <h3>Felicidades, la orden fue generada! Gracias por su compra!</h3>
+                <h4>El identificador de su orden es: <strong>{orderGenerated}</strong></h4>
+                <button onClick={finalHandle} className='btn btn-primary btnSize'>Volver Atrás!</button>
+              </div> 
+              }
+          </>
+      );
 };
 
 export default Cart;

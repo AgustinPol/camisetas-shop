@@ -11,22 +11,22 @@ const [processingOrder, setProcessingOrder] = useState(false);
 const [cartTotal, setCartTotal] = useState("")
 
 useEffect(() => {
-    if (!localStorage.getItem("userCart")) {
-      localStorage.setItem("userCart", JSON.stringify([]));
+    if (!localStorage.getItem("cartLS")) {
+      localStorage.setItem("cartLS", JSON.stringify([]));
     } else {
-      setCart(JSON.parse(localStorage.getItem("userCart")));
+      setCart(JSON.parse(localStorage.getItem("cartLS")));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("userCart", JSON.stringify(cart));
-    const cartLS = JSON.parse(localStorage.getItem("userCart"));
+    localStorage.setItem("cartLS", JSON.stringify(cart));
+    const cartLS = JSON.parse(localStorage.getItem("cartLS"));
     const quantityLS = cartLS.reduce((acc, item) => acc + item.quantity, 0);
     setTotalQuantity(JSON.stringify(quantityLS));
   }, [cart]);
 
   useEffect(() => {
-    const cartLS = JSON.parse(localStorage.getItem("userCart"));
+    const cartLS = JSON.parse(localStorage.getItem("cartLS"));
     const totalLS = cartLS.reduce(
       (acc, item) => acc + item.quantity * item.price,
       0
