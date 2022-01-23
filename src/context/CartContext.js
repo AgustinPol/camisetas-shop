@@ -38,7 +38,7 @@ useEffect(() => {
 const addItem = (newProduct, newQuantity) => {   
     const repeatedProduct = cart.find(e => e.item.id === newProduct.id)
     const auxCart = [...cart]; 
-    (repeatedProduct !== undefined) ? 
+    (repeatedProduct) ? 
         changeQuantity(auxCart, repeatedProduct, newQuantity)
         :
         pushItem(newProduct, newQuantity, auxCart)
@@ -66,9 +66,7 @@ const changeQuantity = (auxCart, currentElement, newQuantity) => {
 }
 
 const isInCart = (id) => {
-    const currentItem = cart.find(element => element.item.id === id)
-
-    return currentItem ? true : false
+    return cart.some(element => element.item.id === id)
 }
 
 const clearCart = () => { 

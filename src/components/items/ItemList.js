@@ -1,5 +1,5 @@
 import React from "react";
-import Item from "../items/Item";
+import Item from "./Item";
 import "./ItemList.css"
 
 

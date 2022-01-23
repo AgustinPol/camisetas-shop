@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import NavBs from "./components/nav-bs/NavBs.jsx";
-import ItemListContainer from "./containers/ItemListContainer.jsx";
-import ItemDetailContainer from './containers/ItemDetailContainer.jsx';
-import Cart from "./components/cart/Cart.jsx"
+import NavBs from "./components/nav-bs/NavBs.js";
+import ItemListContainer from "./containers/ItemListContainer.js";
+import ItemDetailContainer from './containers/ItemDetailContainer.js';
+import Cart from "./components/cart/Cart.js"
 import Footer from './components/footer/Footer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
