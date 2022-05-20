@@ -50,7 +50,7 @@ const ItemListContainer = () => {
     }
 
     return (
-        <div className="itemListContainer container">
+        <div className="itemListContainer container-lg">
             <h1 className="styleTitle">¡Bienvenidos a nuestra tienda online!</h1>
             <ItemList products={products} />
         </div>

@@ -3,7 +3,8 @@ import CartWidget from "../cart-widget/CartWidget";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { db } from "../../services/firebase/firebase"; 
-import { getDocs, collection } from "firebase/firestore"
+import { getDocs, collection } from "firebase/firestore";
+import "../nav-bs/style.css";
 
 const NavBs = () => {
   const { cart, orderGenerated } = useContext(CartContext);
@@ -27,7 +28,7 @@ const NavBs = () => {
    
     return (
 
-  <header>
+  <header className="bg-dark bg-gradient">
   {(orderGenerated === "") && 
   <nav className="navbar navbar-expand-lg bg-dark bg-gradient">
     <div className="container-fluid">
